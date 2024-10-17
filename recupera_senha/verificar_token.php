@@ -88,7 +88,11 @@
                     </div>
 <?php
 session_start();
-include_once('../config.php');
+include_once('../backend/config.php');
+if (isset($_POST['submit'])) {
+    
+    
+
 
 if (isset($_POST['token'])) {
     $token = $_POST['token'];
@@ -109,6 +113,7 @@ if (isset($_POST['token'])) {
     } else {
         echo "Token inválido ou expirado.";
     }
+}
 }
 ?>
                     

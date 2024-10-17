@@ -16,3 +16,4 @@ document.querySelector('.menu-hamburger').addEventListener('click', function() {
     this.classList.toggle('active'); // Ativa ou desativa o ícone de hambúrguer
     document.querySelector('.dropdown-menu').classList.toggle('active'); // Mostra/esconde o menu suspenso
 });
+

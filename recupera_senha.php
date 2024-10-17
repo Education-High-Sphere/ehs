@@ -88,7 +88,7 @@
                     </div>
                     <?php
 session_start();
-include_once('config.php');
+include_once('backend/config.php');
 
 // Inclui o autoloader do Composer ou o arquivo principal do PHPMailer
 require 'PHPMailer/src/Exception.php';

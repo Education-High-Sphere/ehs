@@ -92,7 +92,7 @@
                     </div>
 <?php
 session_start();
-include_once('../config.php');
+include_once('../backend/config.php');
 
 // Capturar a nova senha do formulário
 if (!isset($_SESSION['token'])) {
