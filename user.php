@@ -45,7 +45,7 @@ require 'backend/get_user_posts.php';
 
         /* Estiliza a parte de rolagem da barra */
         ::-webkit-scrollbar-thumb {
-            background: blue; /* Cor da parte rolável */
+            background-color: #000120; /* Cor da parte rolável */
         }
 
         /* Estiliza a parte de rolagem ao passar o mouse */
@@ -66,7 +66,7 @@ require 'backend/get_user_posts.php';
         }
 
         .progress {
-            background-color: rgb(0, 0, 161);;
+            background-color: rgb(2, 2, 45);
             height: 100%;
             border-radius: 5px;
             text-align: center;
@@ -78,8 +78,8 @@ require 'backend/get_user_posts.php';
             max-width: 50%;
             height: 60vh;
             margin: 1vw;
-            background-image: linear-gradient(to right,rgb(228, 225, 225),rgb(212, 212, 212),rgb(240, 238, 238));
-            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+            background-color: #C0C4C9;
+            box-shadow: 0px 0px 5px 0px rgba(0,0,0);
             border-radius: 5px;
             padding: 1%;
         }
@@ -105,14 +105,13 @@ require 'backend/get_user_posts.php';
             background-color: rgb(82, 0, 17);
         }
         .field{
-            border: 5px solid #00132d;
             border-radius: 5px;
             padding: 5px;
         }
         .field button{
-            background-color: #00132d;
+            background-color: rgb(2, 2, 45);
             color: white;
-            border: 2px dotted #00132d;
+            border: 2px dotted black;
             border-radius: 5px;
             padding: 5px;
             font-size: 1rem;
@@ -145,19 +144,25 @@ require 'backend/get_user_posts.php';
 <body>
     <header>
         <img id="logo" src="images/logo.png" alt="">
-            <h2 id="title">EHSYNC</h2>
-            <span class="button-container">
-                <a href="conteudos.html"><button class="header-button"><img src="images/content.png" width="60px" height="60px">Conteúdos</button></a>
-                <a href="feed.php"><button class="header-button"><img src="images/teacher.png" width="60px" height="60px" >Professor</button></a>
-                <a href="quemsomos.html"><button class="header-button"><img src="images/quemsomos.png" width="70px" height="70px" >Quem Somos</button></a>
-                    <span class="user">
-                <a href="user.php"><button><img src="images/user.png" width="70%" height="80%" >
-                    User</button></a>
-                </span>
-                <span>
-            <a href="sair.php" class="btn-sair">Sair</a>
-        </span>
+        <h2 id="title">EHSYNC</h2>
+
+        <div class="menu-hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <nav class="dropdown-menu">
+            <a href="conteudos.html"><button class="header-button"><img src="images/content.png" width="60px" height="60px">Conteúdos</button></a>
+            <a href="professor.html"><button class="header-button"><img src="images/teacher.png" width="60px" height="60px" >Professor</button></a>
+            <a href="quemsomos.html"><button class="header-button"><img src="images/quemsomos.png" width="60px" height="60px" >EHS</button></a>
+            <span class="user">
+                <a href="user.php"><button><img src="images/user.png" width="70px" height="70px" >User</button></a>
             </span>
+            <button id="btn-sair">Sair</button>
+        </nav>
+
+
             </header>
     
     <div class="box">
@@ -245,6 +250,25 @@ require 'backend/get_user_posts.php';
     
     <script src="script.js"></script>
         <script>
+
+document.addEventListener('DOMContentLoaded', function() {
+    const menuHamburger = document.querySelector('.menu-hamburger');
+    const dropdownMenu = document.querySelector('.dropdown-menu');
+
+    menuHamburger.addEventListener('click', function() {
+        // Alterna a classe 'active' no ícone do menu hamburguer e no menu suspenso
+        dropdownMenu.classList.toggle('.active');
+    });
+
+    // Fecha o menu caso clique fora dele
+    document.addEventListener('click', function(event) {
+        if (!menuHamburger.contains(event.target) && !dropdownMenu.contains(event.target)) {
+            // Se o clique não foi no menu ou no dropdown, remove a classe 'active'
+            dropdownMenu.classList.remove('.active');
+        }
+    });
+});
+
     document.getElementById("status").addEventListener("click", function() {
         document.querySelector(".status-box").style.display = "flex";
         document.getElementById("post-box").style.display = "none";

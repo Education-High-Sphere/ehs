@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro EHS</title>
-    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet"  href="login.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, max-scale=1.0">
@@ -65,7 +65,7 @@
             
                 <!-- Cadastro -->
                 <div class="signup">
-                    <form action="form.php" method="POST">
+                    <form action="backend/form.php" method="POST">
                         <label for="chk" aria-hidden="true">Cadastro</label>
                         <input type="text" name="nome" placeholder="Nome de Usuário" required="">
                         <input type="email" name="email" placeholder="Email" required="">
@@ -86,7 +86,7 @@
             
                 <!-- Login -->
                 <div class="login">
-                    <form action="testeLogin.php" method="POST">
+                    <form action="backend/testelogin.php" method="POST">
                         <label for="chk" aria-hidden="true">Login</label>
                         <input class="dark" type="email" name="email" placeholder="Email" required="">
                         <div class="campo-senha">
@@ -101,6 +101,7 @@
                 </div>
             </div>
             </fieldset>
+    
         </div>
             
 
@@ -109,6 +110,7 @@
         <fieldset class="ffield">
 
             <legend class="flegend">Assista e saiba mais!</legend>
+            <video src="video/video.mp4" type="video/mp4" controls="true" width="770px" height="400px"></video>
 
         </fieldset>
 

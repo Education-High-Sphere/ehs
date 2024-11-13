@@ -7,44 +7,25 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     background-color: rgb(0, 0, 36);
     display: flex;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
 
 
 header {
     font-family: 'Times New Roman';
-    background-color: rgb(0, 0, 0);
+    background-color: #0b0b0b;
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 12vh;
     min-height: 12vh;
-    border: 2px solid black;
     width: 100%;
-}
-.campo-senha {
-    width: max-content; 
-    display:flex;
-    justify-content: space-evenly;/* Ajusta conforme o tamanho do input */
-}
-
-#toggleSenha {
-    background: none;
-    border: none;
-    cursor: pointer;
-}
-
-#toggleSenha i {
-    font-size: 20px;
-    color: #333;
-}
-
-#toggleSenha:focus {
-    outline: none; /* Remove borda ao clicar */
 }
 
 #title {
-    font-size: 2vw;
+    font-size: 3vw;
     text-transform: uppercase;
     color: white;
     margin: auto;
@@ -83,16 +64,14 @@ header {
 }
 
 .box {
+    margin-top: 20px;
     color: white;
-    position: absolute;
     background-color: rgba(0, 0, 0, 0.6);
     display: flex;
     justify-content: center;
     padding: 0.6%;
-    top: 15%;
-    left: 58.5%;
     border-radius: 3%;
-    width: 40%;
+    width: 80%;
     overflow: auto;
     min-height: 50%;
     max-height: 90%;
@@ -104,19 +83,19 @@ a {
 }
 
 fieldset {
-    border: 5px solid blue;
+    border: #002452;
     width: 92%;
     min-height: 90%;
     display: flex;
-    justify-content: center;
-    overflow: auto;
+    flex-direction: column;
 }
 
 legend {
-    border: 9px solid blue;
     padding: 1%;
-    background-color: blue;
+    background-color: #00041b;
     border-radius: 8%;
+    transform:translateX(420px);
+    
 }
 
 .inputBox {
@@ -142,13 +121,6 @@ legend {
     transition: .5s;
 }
 
-.inputUser:focus ~ .labelInput,
-.inputUser:valid ~ .labelInput {
-    top: -20px;
-    font-size: 12px;
-    color: dodgerblue;
-}
-
 #data_nascimento {
     margin-top: 7%;
     margin-bottom: 6%;
@@ -167,9 +139,8 @@ legend {
     cursor: pointer;
     border-radius: 20px;
     width: 90%;
+    height: 40px;
     border: none;
-    padding: 4%;
-    height: 45%;
 }
 
 #submit:hover {
@@ -180,22 +151,20 @@ legend {
     font-family: Arial, Helvetica, sans-serif;
     background-color: rgba(0, 0, 0, 0.6);
     text-align: center;
-    position: absolute;
-    transform: translate(-24%, 20%);
-    top: 5%;
     height: auto;
-    margin-left: 15%;
     width: 57%;
     padding: 0.7%;
     border-radius: 30px;
-    margin-top: 300px;
-    margin-bottom: auto;
+    margin-top: 30px;
+}
+.video legend{
+    transform: translateX(0);
 }
 
 .ffield {
     border: 3px solid whitesmoke;
-    width: 95%;
-    height: 95%;
+    width: 99%;
+    height: 90%;
 }
 
 .flegend {
@@ -207,17 +176,43 @@ legend {
     width: 100%;
     flex-wrap: nowrap;
 }
+.campo-senha {
+    width: max-content; 
+    display:flex;
+    justify-content: space-evenly;
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+    width: 78%;
+    height: 40px;
+    margin-bottom: 20px;/* Ajusta conforme o tamanho do input */
+}
 
-.main {
-    max-width: 37vw;
-    min-height: 55vh;
-    min-width: 20vw;
-    height: 100vh;
-    background: red;
-    background: url("image.jpg") no-repeat center/cover;
-    overflow: hidden;
-    border-radius: 10px;
-    box-shadow: 5px 20px 50px #000;
+#toggleSenha {
+    background: none;
+    width: 20%;
+    border: none;
+    cursor: pointer;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+.senha{
+    margin-top: 40px;
+}
+
+#toggleSenha i {
+    font-size: 20px;
+    color: #333;
+}
+
+#toggleSenha:focus {
+    outline: none; /* Remove borda ao clicar */
+}
+
+.main{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
 }
 
 #chk {
@@ -225,9 +220,15 @@ legend {
 }
 
 .signup {
-    position: relative;
-    width: 100%;
-    max-height: 90vh;
+    width: 40%;
+    background-color: #00041b;
+    border-radius: 20px;
+}
+.signup input{
+    border: 2px solid black;
+    border-radius: 5px;
+    font-size: 1.2vw;
+    width: 70%;
 }
 
 label {
@@ -278,29 +279,27 @@ button:hover {
 }
 
 .login {
-    height: 480px;
+    max-height: 60vh;
+    margin-left:20px;
+    width: 40%;
     background: #eee;
-    border-radius: 60% / 10%;
-    transform: translateY(-40px);
-    transition: .8s ease-in-out;
-    display: block;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.login input{
+    width: 78%;
 }
 
 .login label {
     color: #000d53;
-    transform: scale(.6);
+    font-size: 40px;
 }
 
-#chk:checked ~ .login {
-    transform: translateY(-400px);
-}
-
-#chk:checked ~ .login label {
-    transform: scale(1);
-}
-
-#chk:checked ~ .signup label {
-    transform: scale(.6);
+.login .campo-senha{
+    width: 90%;
 }
 
 .radio {
@@ -456,7 +455,7 @@ button:hover {
 
     .login {
         height: auto;
-        transform: translateY(150px); /* Reseta a posição inicial */
+        transform: translateY(180px); /* Reseta a posição inicial */
         border-radius: 20px; /* Bordas mais suaves */
     }
 
@@ -464,7 +463,7 @@ button:hover {
         font-size: 1.5rem; /* Diminui o tamanho da fonte para caber melhor */
     }
     #chk:checked ~ .login {
-        transform: translateY(-500px);
+        transform: translateY(-230px);
     }
 }
 

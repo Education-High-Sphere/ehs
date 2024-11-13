@@ -5,21 +5,19 @@
 }
 
 body {
-    background-color: #00132d;
+    background-color: rgb(2, 2, 45);
     font-family: 'Lucida Grande', sans-serif;
 }
 
 header {
-    overflow: hidden;
     top: 0;
     left: 0;
-    background-color: #000706;
+    background-color: #0b0b0b;
     font-family: 'Kagitigan',sans-serif;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 15vh;
-    border: 2px solid black;
+    height: auto;
     padding: 0 20px;
 }
 .ini{
@@ -28,7 +26,7 @@ header {
 }
 /* Estilos do menu hambúrguer */
 .menu-hamburger {
-    display: none;
+    display: flex;
     flex-direction: column;
     cursor: pointer;
 }
@@ -36,37 +34,63 @@ header {
 .menu-hamburger span {
     width: 25px;
     height: 3px;
-    background-color: #f4f6fc;
+    background-color: #f4f6fc; /* A cor do ícone do hamburguer */
     margin: 4px;
     transition: all 0.3s ease;
 }
 
 /* Menu suspenso (dropdown) */
 .dropdown-menu {
-    display: none;
-    flex-direction: column;
+    display: none; /* Escondido por padrão */
     position: absolute;
-    top: 90px;
-    right: 20px;
+    top: 0;
+    left: 80%;
+    width: auto;
+    min-width: 15%;
     background-color: #000706;
-    padding: 10px;
+    padding: 5px;
     border: 1px solid #f4f6fc;
+    z-index: 100;
+    transition: transform 4s ease; /* Adiciona a transição */
+    transform: translateX(100%); /* Garante que o menu apareça acima de outros elementos */
+}
+
+.dropdown-menu.active {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: translateX(0); /* Mostra o menu suspenso quando ativo */
 }
 
 .dropdown-menu button {
     margin: 10px 0;
-    width: 100%;
+    width: auto;
+    height: auto;
+    font-size: 0.8rem;
+    color: #0b0b0b; /* Garante que o texto seja visível no fundo escuro */
+    cursor: pointer;
+    text-align: center;
+    overflow: visible;
+}
+.dropdown-menu button p{
+    margin-bottom: 10px;
+
+}
+
+.dropdown-menu button:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Efeito hover para realçar a interação */
 }
 
 #title {
     font-size: 5rem;
     text-transform: uppercase;
     color: #f4f6fc;
+    text-align: center;
 }
 
 #logo {
     object-fit: cover;
-    width: 8vw;
+    width: 7vw;
     min-width: 50px;
 }
 
@@ -134,8 +158,8 @@ header a{
 .box {
     margin: 20px auto;
     border: 2px solid black;
-    border-radius: 5px;
-    background-color: #f4f6fc;
+    border-radius: 20px;
+    background-color: #f2f1ea;
     max-width: 90vw;
     min-width: auto;
     height: auto;
