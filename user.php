@@ -30,7 +30,8 @@ require 'backend/get_user_posts.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tela de Usuário</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
 
 ::-webkit-scrollbar {
@@ -72,16 +73,7 @@ require 'backend/get_user_posts.php';
             text-align: center;
             line-height: 20px;
             color: white;
-        }
-        .little-box{
-            width: 50%;
-            max-width: 50%;
-            height: 60vh;
-            margin: 1vw;
-            background-color: #C0C4C9;
-            box-shadow: 0px 0px 5px 0px rgba(0,0,0);
-            border-radius: 5px;
-            padding: 1%;
+            font-size: 1rem;
         }
         .little-box>h1{
             font-size: 3vw;
@@ -137,6 +129,9 @@ require 'backend/get_user_posts.php';
             white-space:inherit;
             overflow:auto;
         }
+        .post-actions{
+            margin-top: 5%;
+        }
        
 
     </style>
@@ -184,14 +179,14 @@ require 'backend/get_user_posts.php';
             <div class="content">
                 <h2>Logica de Programação</h2>
                 <div class="progress-bar">
-                    <div class="progress" style="width: 50%;">50% concluído</div>
+                    <div class="progress" style="width: 50%;">50%</div>
              </div>
             </div>
         
                 <div class="content">
                     <h2>Python</h2>
                     <div class="progress-bar">
-                        <div class="progress" style="width: 30%;">30% concluído</div>
+                        <div class="progress" style="width: 30%;">30%</div>
                         </div>
                     </div>
                 </div>
@@ -219,7 +214,26 @@ require 'backend/get_user_posts.php';
 
                     <section id="posts">
                         <?php if(!empty($posts)): ?>
-                            <?php foreach($posts as $post): ?>
+                            <?php foreach($posts as $post): 
+                                    $likes_count=0;
+                                    $comments_count=0;
+
+                                    $sql = "SELECT COUNT(*) AS likes FROM likes WHERE post_id = ?";
+                                    $stmt = $conexao->prepare($sql);
+                                    $stmt->bind_param("i", $post['ID']);
+                                    $stmt->execute();
+                                    $result = $stmt->get_result();
+                                    $row = $result->fetch_assoc();
+                                    $likes_count = $row['likes'];
+
+                                    $sql = "SELECT COUNT(*) AS comments FROM comments WHERE post_id = ?";
+                                    $stmt = $conexao->prepare($sql);
+                                    $stmt->bind_param("i", $post['ID']);
+                                    $stmt->execute();
+                                    $result = $stmt->get_result();
+                                    $row = $result->fetch_assoc();
+                                    $comments_count = $row['comments'];
+                                ?>
                                 <div class="post">
                                     <div class="post-header">
                                         <p>Por:<?php echo $user['Nome']; ?></p>
@@ -228,6 +242,10 @@ require 'backend/get_user_posts.php';
                                     <div class="post-content">
                                         <h3 class="post-title"><?php echo $post['content']; ?></h3>
                                         <button class="delete-post" data-id="<?php echo $post['ID']; ?>">X</button>
+                                    </div>
+                                    <div class="post-actions">
+                                        <button id="like-btn" data-id="<?php echo $post['ID']; ?>" data-liked="true"><i class="fas fa-thumbs-up"><?php echo $likes_count; ?></i></button>
+                                        <button id="comment-btn" data-id="<?php echo $post['ID']; ?>"><i class="fas fa-comment"><?php echo $comments_count; ?></i></button>
                                     </div>
                                 </div>
                             <?php endforeach; ?>
@@ -309,6 +327,53 @@ document.querySelectorAll('.delete-post').forEach(button => {
     }
   });
 });
+
+document.getElementById('like-btn').addEventListener('click', async function() {
+    console.log('Clicou no botão de curtir');
+
+    const post_id = this.getAttribute('data-id');
+    const isLiked = this.getAttribute('data-liked') === 'true'; // Verifica o estado de curtida atual
+
+    try {
+        const response = await fetch('./backend/like_post.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ post_id }), // Envia apenas o ID do post, o backend decide se será curtida ou remoção
+        });
+
+        if (!response.ok) {
+            throw new Error('Erro na resposta da rede');
+        }
+
+        const result = await response.json();
+        
+        console.log('Resposta do servidor:', result);
+        window.location.reload();
+
+        // Atualiza o estado de curtida com base na resposta do servidor
+        if (result.message.includes('curtido')) {
+            this.setAttribute('data-liked', 'true'); // Indica que agora o post está curtido
+        } else if (result.message.includes('removida')) {
+            this.setAttribute('data-liked', 'false'); // Indica que agora o post não está curtido
+        }
+
+        console.log(result.message); // Mostra a mensagem de sucesso ou falha
+    } catch (error) {
+        console.error('Erro ao processar a curtida:', error);
+    }
+});
+
+document.getElementById('comment-btn').addEventListener('click', async function() {
+    console.log('Clicou no botão de comentar');
+    const post_id = this.getAttribute('data-id');
+    window.location.href = `comment.php?post_id=${post_id}`;
+});
+
+
+
+
         
     
     

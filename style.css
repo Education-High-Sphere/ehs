@@ -251,6 +251,17 @@ textarea{
     height: 100%;
 }
 
+.little-box{
+    width: 50%;
+    max-width: 50%;
+    height: 60vh;
+    margin: 1vw;
+    background-color: #C0C4C9;
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0);
+    border-radius: 5px;
+    padding: 1%;
+}
+
 .content-container {
     margin: 2vh 3vw;
     display: flex;
@@ -397,6 +408,32 @@ textarea{
 
     .box p {
         font-size: 0.9rem;
+    }
+    .big-box{
+        width: 100%;
+    }
+
+    .little-box{
+        width: 80%;
+        max-width: 500px;
+        height: auto;
+        min-height: 300px;
+    }
+
+    .little-box h2{
+        font-size: 1rem;
+    }
+
+    .post-header{
+        font-size: 2vw;
+        display: flex;
+        justify-content: space-evenly;
+        text-align: left;
+        align-self: center;
+    }
+
+    .post-content{
+        font-size:2vw;
     }
     
 }
